@@ -21,6 +21,7 @@
     
     HQLMomentsImageLayoutView *view = [[HQLMomentsImageLayoutView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 100)];
     view.delegate = self;
+    [view reloadData];
     [self.view addSubview:view];
 }
 

@@ -19,7 +19,36 @@
 
 @implementation HQLMomentsImageLayoutView
 
+#define life cycle
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self viewConfig];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self viewConfig];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self viewConfig];
+    }
+    return self;
+}
+
 #pragma mark - event
+
+- (void)viewConfig {
+    self.itemHorizonMargin = kDefaultMargin;
+    self.itemVerticalMargin = kDefaultMargin;
+    self.numberOfRow = kDefaultNumberOfRow;
+}
 
 - (void)reloadData {
     if (!self.itemArray) {
@@ -48,7 +77,7 @@
     
     CGFloat width = self.frame.size.width;
     
-    self.numberOfRow = self.numberOfRow < 0 ? kDefaultNumberOfRow : self.numberOfRow;
+    self.numberOfRow = self.numberOfRow <= 0 ? kDefaultNumberOfRow : self.numberOfRow;
     
     CGSize itemSize = CGSizeMake((width - self.itemHorizonMargin * (self.numberOfRow - 1)) / self.numberOfRow, (width - self.itemHorizonMargin * (self.numberOfRow - 1)) / self.numberOfRow);
     

@@ -26,7 +26,7 @@
 }
 
 - (NSInteger)numberOfItemsInMomentsImageLayoutView:(HQLMomentsImageLayoutView *)momentsImageLayoutView {
-    return 4;
+    return 5;
 }
 
 - (HQLImageType)momentsImageLayoutView:(HQLMomentsImageLayoutView *)momentsImageLayoutView typeOfItemWithIndex:(NSInteger)itemIndex {

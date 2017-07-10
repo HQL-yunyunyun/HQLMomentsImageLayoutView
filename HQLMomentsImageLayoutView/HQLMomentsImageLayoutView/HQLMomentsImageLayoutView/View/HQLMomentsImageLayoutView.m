@@ -74,16 +74,21 @@
     if (self.itemVerticalMargin < 0) {
         self.itemVerticalMargin = kDefaultMargin;
     }
-    
-    CGFloat width = self.frame.size.width;
-    
     self.numberOfRow = self.numberOfRow <= 0 ? kDefaultNumberOfRow : self.numberOfRow;
     
+    CGFloat width = self.frame.size.width;
     CGSize itemSize = CGSizeMake((width - self.itemHorizonMargin * (self.numberOfRow - 1)) / self.numberOfRow, (width - self.itemHorizonMargin * (self.numberOfRow - 1)) / self.numberOfRow);
+    CGFloat horizenMargin = self.itemHorizonMargin;
+    CGFloat verticalMargin = self.itemVerticalMargin;
     
     if (itemCount == 1) {
         if ([self.delegate respondsToSelector:@selector(sizeOfItemWhenItemCountEqualOneInMomentsImageLayoutView:)]) {
             itemSize = [self.delegate sizeOfItemWhenItemCountEqualOneInMomentsImageLayoutView:self];
+        }
+    } else {
+        if ([self.delegate respondsToSelector:@selector(sizeOfItemsInMomentsImageLayoutView:)]) {
+            itemSize = [self.delegate sizeOfItemWhenItemCountEqualOneInMomentsImageLayoutView:self];
+            horizenMargin = (width - self.numberOfRow * itemSize.width) / (self.numberOfRow - 1);
         }
     }
     
@@ -96,8 +101,8 @@
             imageView.type = [self.delegate momentsImageLayoutView:self typeOfItemWithIndex:i];
         }
         
-        CGFloat viewX = (i % numberOfRow) * (itemSize.width + self.itemHorizonMargin);
-        CGFloat viewY = (i / numberOfRow) * (itemSize.height + self.itemVerticalMargin);
+        CGFloat viewX = (i % numberOfRow) * (itemSize.width + horizenMargin);
+        CGFloat viewY = (i / numberOfRow) * (itemSize.height + verticalMargin);
         imageView.frame = CGRectMake(viewX, viewY, itemSize.width, itemSize.height);
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];

@@ -20,7 +20,10 @@
 
 @optional
 - (void)momentsImageLayoutView:(HQLMomentsImageLayoutView *)momentsImageLayoutView didClickItem:(HQLMomentsImageView *)item atIndex:(NSInteger)itemIndex;
+// 当item的数量为1的时候调用这个代理
 - (CGSize)sizeOfItemWhenItemCountEqualOneInMomentsImageLayoutView:(HQLMomentsImageLayoutView *)momentsImageLayoutView;
+// 每个item的大小(如果实现了这个代理，horizonMargin将无效)
+- (CGSize)sizeOfItemsInMomentsImageLayoutView:(HQLMomentsImageLayoutView *)momentsImageLayoutView;
 
 // View的高度将不受控制
 - (void)momentsImageLayoutViewFrameDidChange:(HQLMomentsImageLayoutView *)momentsImageLayoutView;
